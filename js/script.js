@@ -40,13 +40,10 @@ function showPage(list, page) {
 This function creates and inserts/appends the elements needed for the pagination buttons
 */
 function addPagination(list) {
-
   let numOfPages = Math.ceil(list.length / 9);
   let linkList = document.querySelector('.link-list');
   linkList.innerHTML = '';
-
   for (let i = 1; i <= numOfPages; i++) {
-
     let button = `
         <li>
         <button type="button">${i}</button>
@@ -54,7 +51,6 @@ function addPagination(list) {
       `;
 
     linkList.insertAdjacentHTML('beforeend', button);
-
     const buttonActive = document.querySelector('li button');
     buttonActive.className = 'active';
   }
@@ -63,7 +59,6 @@ function addPagination(list) {
     const button = e.target;
     const pageNumber = button.textContent;
     const buttonActive = linkList.querySelector('.active');
-
     if (e.target.tagName === 'BUTTON') {
       buttonActive.className = '';
       button.className = 'active';
@@ -103,22 +98,15 @@ returns 'No results'
 function searchBar(searchInput, list) {
   let resultArray = [];
   for (let i = 0; i < list.length; i++) {
-
     const firstName = list[i].name.first.toLowerCase();
     const lastName = list[i].name.last.toLowerCase();
-
     if (searchInput.value.length !== 0 && firstName.includes(searchInput.value.toLowerCase()) || lastName.includes(searchInput.value.toLowerCase())) {
-
       resultArray.push(list[i]);
-
       showPage(resultArray, 1)
       addPagination(resultArray);
-      
     } else if (resultArray.length === 0) {
-
       document.querySelector('.student-list').innerHTML = 'No Results';
       document.querySelector('.link-list').innerHTML = '';
-
     }
   }
 }
@@ -126,7 +114,5 @@ function searchBar(searchInput, list) {
 const search = document.querySelector('#search');
 // Event listener on keyup for search filtering
 search.addEventListener('keyup', () => {
-
   searchBar(search, data);
-
 });
