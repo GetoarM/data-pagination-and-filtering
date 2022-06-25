@@ -12,16 +12,16 @@ const studentList = document.querySelector('.student-list');
 
 function showPage(list, page) {
 
-   const itemsPerPage = 9;
-   const startIndex = (page * itemsPerPage) - itemsPerPage
-   const endIndex = page * itemsPerPage;
+  const itemsPerPage = 9;
+  const startIndex = (page * itemsPerPage) - itemsPerPage
+  const endIndex = page * itemsPerPage;
 
-   studentList.innerHTML = '';
+  studentList.innerHTML = '';
 
-   for (let i = 0; i < list.length; i++){
-     let lis = list[i];
-      if(i >= startIndex && i < endIndex){
-        let studentItem = `
+  for (let i = 0; i < list.length; i++) {
+    let lis = list[i];
+    if (i >= startIndex && i < endIndex) {
+      let studentItem = `
           <li class="student-item cf">
             <div class="student-details">
               <img class="avatar" src=${lis.picture.medium} alt="Profile Picture">
@@ -34,10 +34,10 @@ function showPage(list, page) {
           </li>
         `;
 
-        studentList.insertAdjacentHTML('beforeend', studentItem);
-      }
-   }
- }
+      studentList.insertAdjacentHTML('beforeend', studentItem);
+    }
+  }
+}
 
 
 
@@ -51,7 +51,7 @@ function addPagination(list) {
   let linkList = document.querySelector('.link-list');
   linkList.innerHTML = '';
 
-  for (let i = 1; i <= numOfPages; i++){
+  for (let i = 1; i <= numOfPages; i++) {
 
     let button = `
         <li>
@@ -61,10 +61,8 @@ function addPagination(list) {
 
     linkList.insertAdjacentHTML('beforeend', button);
 
-    if (i === 1) { 
-      const button = document.querySelector('button');
-      button.className = 'active';
-    }
+    const buttonActive = document.querySelector('li button');
+    buttonActive.className = 'active';
   }
 
   linkList.addEventListener('click', (e) => {
@@ -74,15 +72,15 @@ function addPagination(list) {
 
     if (e.target.tagName === 'BUTTON') {
       buttonActive.className = '';
-      button.className ='active';
-      showPage(data, pageNumber);
+      button.className = 'active';
+      showPage(list, pageNumber);
     }
- });
+  });
 
 }
 
 
-function addSearchBar (){
+function addSearchBar() {
   const header = document.querySelector('.header');
   const inputForm = document.createElement('label');
   inputForm.innerHTML = `
@@ -92,7 +90,7 @@ function addSearchBar (){
       <button id="submit" type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
     </label>
   `;
-  
+
   header.appendChild(inputForm);
 }
 
@@ -102,23 +100,22 @@ addPagination(data);
 addSearchBar();
 
 const search = document.querySelector('#search');
-const submit = document.querySelector('#submit');
 
-function searchBar(searchInput, list){
+function searchBar(searchInput, list) {
   let resultArray = [];
-  for (let i = 0; i < list.length; i++){
+  for (let i = 0; i < list.length; i++) {
 
     const firstName = list[i].name.first.toLowerCase();
     const lastName = list[i].name.last.toLowerCase();
 
-      if (searchInput.value.length !== 0 && firstName.includes(searchInput.value.toLowerCase()) || lastName.includes(searchInput.value.toLowerCase())){
+    if (searchInput.value.length !== 0 && firstName.includes(searchInput.value.toLowerCase()) || lastName.includes(searchInput.value.toLowerCase())) {
 
-        resultArray.push(list[i]);       
+      resultArray.push(list[i]);
 
-        showPage(resultArray, 1)
-        addPagination(resultArray);
-
-    } else if (resultArray.length === 0){
+      showPage(resultArray, 1)
+      addPagination(resultArray);
+      
+    } else if (resultArray.length === 0) {
 
       studentList.innerHTML = 'No Results';
       document.querySelector('.link-list').innerHTML = '';
