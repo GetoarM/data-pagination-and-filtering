@@ -1,7 +1,9 @@
-# data-pagination-and-filtering
+# TechDegree Project #2
 
-TechDegree Project #2
+Treehouse Techdegree:
 
-In this project, I'll use a common web development technique known as “pagination” to enhance the usability of a web page.
+FSJS Project 2 - Data Pagination and Filtering
 
-link to the [project](https://getoarm.github.io/data-pagination-and-filtering/)
+In this project, I'll use a common web development technique known as “pagination” and filtering to enhance the usability of a web page.
+
+Link to the [project](https://getoarm.github.io/data-pagination-and-filtering/)

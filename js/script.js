@@ -4,18 +4,13 @@ FSJS Project 2 - Data Pagination and Filtering
 */
 
 /*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
+This function creates and inserts/appends the elements needed to display the page
 */
-
-const studentList = document.querySelector('.student-list');
-
-function showPage(list, page) {
-
+function showPage(list, page) { 
   const itemsPerPage = 9;
   const startIndex = (page * itemsPerPage) - itemsPerPage
   const endIndex = page * itemsPerPage;
-
+  const studentList = document.querySelector('.student-list');
   studentList.innerHTML = '';
 
   for (let i = 0; i < list.length; i++) {
@@ -42,8 +37,7 @@ function showPage(list, page) {
 
 
 /*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
+This function creates and inserts/appends the elements needed for the pagination buttons
 */
 function addPagination(list) {
 
@@ -79,7 +73,9 @@ function addPagination(list) {
 
 }
 
-
+/*
+This function appends the html elements needed for the search input
+*/
 function addSearchBar() {
   const header = document.querySelector('.header');
   const inputForm = document.createElement('label');
@@ -94,13 +90,16 @@ function addSearchBar() {
   header.appendChild(inputForm);
 }
 
-// Call functions
+// Calling the functions
 showPage(data, 1);
 addPagination(data);
 addSearchBar();
 
-const search = document.querySelector('#search');
-
+/*
+This function filters the results based on the user search input
+and checks if they match the array's firstname and lastname , or else
+returns 'No results'
+*/
 function searchBar(searchInput, list) {
   let resultArray = [];
   for (let i = 0; i < list.length; i++) {
@@ -117,13 +116,15 @@ function searchBar(searchInput, list) {
       
     } else if (resultArray.length === 0) {
 
-      studentList.innerHTML = 'No Results';
+      document.querySelector('.student-list').innerHTML = 'No Results';
       document.querySelector('.link-list').innerHTML = '';
 
     }
   }
 }
 
+const search = document.querySelector('#search');
+// Event listener on keyup for search filtering
 search.addEventListener('keyup', () => {
 
   searchBar(search, data);
